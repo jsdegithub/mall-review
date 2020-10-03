@@ -1,7 +1,14 @@
 <template>
-<div>index</div>
+<div>
+    <service-bar></service-bar>
+</div>
 </template>
 
 <script>
-export default {};
+import ServiceBar from '../components/ServiceBar'
+export default {
+    components: {
+        ServiceBar
+    }
+};
 </script>
