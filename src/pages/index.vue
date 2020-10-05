@@ -81,7 +81,7 @@
                                 <div class="item-info">
                                     <h3>{{item.name}}</h3>
                                     <p>{{item.subtitle}}</p>
-                                    <p class="price">{{item.price}}元</p>
+                                    <p class="price" @click="addCart(item.id)">{{item.price}}元</p>
                                 </div>
                             </div>
                         </div>
@@ -90,11 +90,25 @@
             </div>
         </div>
         <service-bar></service-bar>
+        <modal
+            title="提示"
+            sureText="查看购物车"
+            btnType="1"
+            modalType="middle"
+            :showModal="showModal"
+            @submit="goToCart"
+            @cancel="showModal=false"
+        >
+            <template v-slot:body>
+                <p>商品添加成功</p>
+            </template>
+        </modal>
     </div>
 </template>
 
 <script>
     import ServiceBar from "../components/ServiceBar";
+    import Modal from "../components/Modal";
     import { swiper, swiperSlide } from "vue-awesome-swiper";
     import "swiper/dist/css/swiper.css";
     export default {
@@ -102,6 +116,7 @@
             swiper,
             swiperSlide,
             ServiceBar,
+            Modal,
         },
         data() {
             return {
@@ -192,6 +207,7 @@
                     },
                 ],
                 phoneList: [],
+                showModal: false,
             };
         },
         mounted() {
@@ -212,6 +228,22 @@
                             res.list.slice(10, 14),
                         ];
                     });
+            },
+            addCart(id) {
+                this.showModal = true;
+                return;
+                this.axios
+                    .post("/carts", {
+                        productId: id,
+                        selected: true,
+                    })
+                    .then((res) => {})
+                    .catch(() => {
+                        this.showModal = true;
+                    });
+            },
+            goToCart() {
+                this.$router.push("/cart");
             },
         },
     };
