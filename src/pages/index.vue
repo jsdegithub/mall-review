@@ -230,16 +230,21 @@
                     });
             },
             addCart(id) {
-                this.showModal = true;
-                return;
                 this.axios
                     .post("/carts", {
                         productId: id,
                         selected: true,
                     })
-                    .then((res) => {})
-                    .catch(() => {
+                    .then((res) => {
                         this.showModal = true;
+                        this.$store.dispatch(
+                            "saveCartCount",
+                            res.cartTotalQuantity
+                        );
+                    })
+                    .catch(() => {
+                        alert("请先登录");
+                        // this.$message.error("请先登录");
                     });
             },
             goToCart() {
