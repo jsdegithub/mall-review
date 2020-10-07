@@ -55,15 +55,17 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <el-pagination
+
+                    <el-pagination
                         class="pagination"
                         background
                         layout="prev, pager, next"
                         :pageSize="pageSize"
                         :total="total"
                         @current-change="handleChange"
-                    ></el-pagination>-->
-                    <div
+                    ></el-pagination>
+
+                    <!-- <div
                         class="scroll-more"
                         v-infinite-scroll="scrollMore"
                         infinite-scroll-disabled="busy"
@@ -73,15 +75,15 @@
                             src="/imgs/loading-svg/loading-bars.svg"
                             v-show="scrollLoading==true && loading==false"
                             alt
-                        />
+                        /> -->
                         <!-- 在122行已经禁用vue-infinite-scroll的情况下，这里已经不必再设置loading==false -->
                         <!-- 之所以scrollLoading和loading会同时为true，是因为vue-infinite-scroll会在页面刚渲染时就触发一次 -->
                         <!-- 所以才要在getOrderList里禁用vue-infinite-scroll，等首次数据渲染结束再启用vue-infinite-scroll -->
-                    </div>
+                    <!-- </div> -->
                     <no-data v-if="!loading && list.length==0"></no-data>
-                    <div class="no-more" v-show="!hasNextPage">
+                    <!-- <div class="no-more" v-show="!hasNextPage">
                         <p>没有更多了</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
