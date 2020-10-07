@@ -243,8 +243,7 @@
                         );
                     })
                     .catch(() => {
-                        alert("请先登录");
-                        // this.$message.error("请先登录");
+                        this.$message.error("请先登录");
                     });
             },
             goToCart() {

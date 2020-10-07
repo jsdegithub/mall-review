@@ -65,16 +65,15 @@
                         password,
                     })
                     .then((res) => {
-                        this.$cookie.set("userId", res.id, { expires: "1M" });
+                        this.$router.push("/index");
+                        this.$cookie.set("userId", res.id, { expires: "Session" }); //关闭浏览器时，令cookie失效
                         this.$store.dispatch("saveUserName", res.username);
                         this.axios.get("/carts/products/sum").then((res) => {
                             this.$store.dispatch("saveCartCount", res);
                         });
-                        this.$router.push("/index");
                     })
                     .catch((_) => {
-                        // this.$message.error("用户名或密码错误");
-                        alert("用户名或密码错误");
+                        this.$message.error("用户名或密码错误");
                     });
             },
             register() {

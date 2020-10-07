@@ -133,8 +133,7 @@
                         this.$router.push("/cart");
                     })
                     .catch((_) => {
-                        alert("请先登录");
-                        // this.$message.error("请先登录");
+                        this.$message.error("请先登录");
                     });
             },
         },

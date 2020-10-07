@@ -5,6 +5,8 @@ import VueAxios from "vue-axios";
 import VueLazyLoad from "vue-lazyload";
 import VueCookie from "vue-cookie";
 
+import { Message } from "element-ui";
+
 import store from "./store/index";
 import App from "./App.vue";
 
@@ -38,6 +40,8 @@ Vue.use(VueCookie);
 Vue.use(VueLazyLoad, {
     loading: "/imgs/loading-svg/loading-bars.svg",
 });
+
+Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false; //生产环境下不给任何错误提示
 
