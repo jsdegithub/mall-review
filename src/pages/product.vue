@@ -58,12 +58,12 @@
                     后置960帧电影般超慢动作视频，将眨眼间的美妙展现得淋漓尽致！
                     <br />更能AI 精准分析视频内容，15个场景智能匹配背景音效。
                 </p>
-                <div class="video-bg" @click="showSlide=true"></div>
+                <div class="video-bg" @click="openVideo"></div>
                 <div class="video-box">
                     <div class="overlay" v-if="showSlide"></div>
                     <div class="video" :class="{'slide':showSlide}">
-                        <span class="icon-close" @click="showSlide=false"></span>
-                        <video src="/imgs/product/video.mp4" muted autoplay controls="controls"></video>
+                        <span class="icon-close" @click="closeVideo"></span>
+                        <video src="/imgs/product/video.mp4" muted controls="controls"></video>
                     </div>
                 </div>
             </div>
@@ -109,6 +109,17 @@
             buy() {
                 let id = this.$route.params.id;
                 this.$router.push(`/detail/${id}`);
+            },
+            openVideo() {
+                this.showSlide = true;
+                let vi = document.getElementsByTagName("video")[0];
+                vi.currentTime = 0;
+                vi.play();
+            },
+            closeVideo() {
+                this.showSlide = false;
+                let vi = document.getElementsByTagName("video")[0];
+                vi.pause();
             },
         },
     };
@@ -227,8 +238,8 @@
                             cursor: pointer;
                             z-index: 11;
                             /* &:hover{
-                                background-color: rgba(245, 37, 37, 0.463);
-                            } */
+                                                                                                            background-color: rgba(245, 37, 37, 0.463);
+                                                                                                        } */
                         }
                         video {
                             width: 100%;
